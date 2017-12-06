@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  display: flex;
 }
 
 .App-header {
@@ -17,3 +18,6 @@
   font-size: large;
 }
 
+.Scroll-text {
+  position: left;
+}

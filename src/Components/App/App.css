@@ -1,5 +1,6 @@
 .App {
-  text-align: center; }
+  text-align: center;
+  display: flex; }
 
 .App-header {
   background-color: #222;
@@ -12,3 +13,6 @@
 
 .App-intro {
   font-size: large; }
+
+.Scroll-text {
+  position: left; }
