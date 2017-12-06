@@ -2,10 +2,14 @@ import React from 'react'
 import './Card.scss'
 
 const Card = ({title}) => {
-  return(
+  return (
     <div className='card'>
     </div>
     )
+}
+
+Card.propTypes = {
+
 }
 
 export default Card
