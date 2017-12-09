@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ScrollText from '../ScrollText/ScrollText'
 import CardContainer from '../CardContainer/CardContainer'
+import Header from '../Header/Header'
 import Button from '../Button/Button'
 import './App.css';
 
@@ -29,29 +30,6 @@ class App extends Component {
     return filmData.map( (film) => {
       return film.opening_crawl
     })
-  }
-
-  fetchPlanetsData(planets) {
-    const planetsPromises = planets.map( async (planet) => {
-      const residentsPromises = planet.residents.map( async (resident) => { 
-        const residentData = await fetch(resident);
-        const residentObject = await residentData.json();
-        return residentObject.name
-      });
-      const residentNames = await Promise.all(residentsPromises);
-
-      return {
-        name: planet.name,
-        data: {
-          terrain: planet.terrain,
-          population: planet.population,
-          climate: planet.climate,
-          residents: residentNames
-        }
-      }
-    })
-
-    return Promise.all(planetsPromises)
   }
 
   fetchPeople = async () => {
@@ -85,11 +63,39 @@ class App extends Component {
     const planetResponse = await fetchPlanets.json()
     const planets = await this.fetchPlanetsData(planetResponse.results)
 
-    this.setState({planets})
+    this.setState({planets, display: 'planets'})
   }
 
-  fetchVehicles = () => {
-    
+  fetchPlanetsData(planets) {
+    const planetsPromises = planets.map( async (planet) => {
+      const residentsPromises = planet.residents.map( async (resident) => { 
+        const residentData = await fetch(resident);
+        const residentObject = await residentData.json();
+        return residentObject.name
+      });
+      const residentNames = await Promise.all(residentsPromises);
+
+      return {
+        name: planet.name,
+        data: {
+          terrain: planet.terrain,
+          population: planet.population,
+          climate: planet.climate,
+          residents: residentNames
+        }
+      }
+    })
+
+    return Promise.all(planetsPromises)
+  }
+
+  fetchVehicles = async () => {
+    const fetchvehicles = await fetch('https://swapi.co/api/vehicles/')
+    const vehicle = await fetchvehicles.json()
+    debugger
+    return {
+      name: vehicle.name
+    }
   }
     
   addFavorite() {
@@ -103,36 +109,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">SwapiBox</h1>
-          <Button
-            buttonText={'People'}  
-            functionToFire={this.fetchPeople} 
-            />
-          <Button 
-            buttonText={'Planets'}
-            functionToFire={this.fetchPlanets} 
-            />
-          <Button
-            buttonText={'Vehicles'}
-            functionToFire={this.fetchVehicles} 
-            />
-          <Button
-            buttonText={'Favorites'}
-            functionToFire={this.showFavorites} 
-            />
-        </header>
-        <div className='api-data'>
-        <ScrollText 
-          className='scroll-text'
-          filmText={this.state.filmText.length > 0 && this.state.filmText[0]}/>
-        <CardContainer 
-          people={this.state.people}
-          planets={this.state.planets}
-          vehicles={this.state.vehicles} 
-          display={this.state.display}
-          addFavorite={this.addFavorite}
+        <Header
+          buttonText=''
+          fetchPeople={this.fetchPeople}
+          fetchPlanets={this.fetchPlanets}
+          fetchVehicles={this.fetchVehicles}
         />
+        <div className='api-data'>
+          <ScrollText 
+            className='scroll-text'
+            filmText={this.state.filmText.length > 0 && this.state.filmText[0]}/>
+          <CardContainer 
+            people={this.state.people}
+            planets={this.state.planets}
+            vehicles={this.state.vehicles} 
+            display={this.state.display}
+            // addFavorite={this.addFavorite}
+          />
         </div>
       </div>
     );

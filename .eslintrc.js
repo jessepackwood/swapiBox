@@ -19,7 +19,7 @@ module.exports = {
     "getter-return": ["error", { "allowImplicit": true }],
     "indent": ["warn", 2],
     "no-template-curly-in-string": "error",
-    "semi": ["error", "always"],
+    // "semi": ["error", "always"],
     "array-bracket-spacing": ["error", "never"],
     "block-spacing": ["error", "always"],
     "brace-style": ["error", "1tbs", { "allowSingleLine": true }],

@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from '../Card/Card'
+import PropTypes from 'prop-types'
 import './CardContainer.css'
 
 const CardContainer = ({people, planets, vehicles, display, addFavorite}) => {
@@ -43,37 +44,43 @@ const CardContainer = ({people, planets, vehicles, display, addFavorite}) => {
       <div> Choose a category
       </div>
     }
-    { display === 'people' && peopleCards.map(card => 
-      <Card 
-        title={card.title}
-        data={card.data}
-        addFavorite={addFavorite}
-      />
-      )
-    }
-    { display === 'planets' && planetCards.map(card =>
+    { display === 'people' && peopleCards.map( (card, index) => 
       <Card
+        key={`people ${index}`}
         title={card.title}
         data={card.data}
         addFavorite={addFavorite}
       />
       )
     }
-    { display === 'vehicles' && peopleCards.map(card => 
-      <Card 
+    { display === 'planets' && planetCards.map( (card, index) =>
+      <Card
+        key={`planets ${index}`}
+        title={card.title}
+        data={card.data}
+        addFavorite={addFavorite}
+      />
+      )
+    }
+    { display === 'vehicles' && vehicleCards.map( (card, index) => 
+      <Card
+        key={`vehicles ${index}`}
         title={card.title}
         data={card.data}
         addFavorite={addFavorite}
       />
       )
     }    
-
     </div>
     )
 }
 
 CardContainer.propTypes = {
-
+  people: PropTypes.array,
+  planets: PropTypes.array,
+  vehicles: PropTypes.array,
+  display: PropTypes.string,
+  addFavorite: PropTypes.func
 }
 
 export default CardContainer
