@@ -28,7 +28,7 @@ const CardContainer = ({people, planets, vehicles, display, addFavorite}) => {
     }
   })
 
-  const vehicles = vehicles.map((vehicle)=> {
+  const vehicleCards = vehicles.map((vehicle)=> {
     return {
       title: vehicle.name,
       data: [

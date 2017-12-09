@@ -25,66 +25,72 @@ class App extends Component {
     }
 
 
-    fetchFilmText(filmData) {
-      return filmData.map( (film) => {
-        return film.opening_crawl
-      })
-    }
+  fetchFilmText(filmData) {
+    return filmData.map( (film) => {
+      return film.opening_crawl
+    })
+  }
 
-    fetchPlanetsData(planets) {
-      const planetsPromises = planets.map( async (planet) => {
-        const residentsPromises = planet.residents.map( async (resident) => { 
-          const residentData = await fetch(resident);
-          const residentObject = await residentData.json();
-          return residentObject.name
-        });
-        const residentNames = await Promise.all(residentsPromises);
+  fetchPlanetsData(planets) {
+    const planetsPromises = planets.map( async (planet) => {
+      const residentsPromises = planet.residents.map( async (resident) => { 
+        const residentData = await fetch(resident);
+        const residentObject = await residentData.json();
+        return residentObject.name
+      });
+      const residentNames = await Promise.all(residentsPromises);
 
-        return {
-          name: planet.name,
-          data: {
-            terrain: planet.terrain,
-            population: planet.population,
-            climate: planet.climate,
-            residents: residentNames
-          }
+      return {
+        name: planet.name,
+        data: {
+          terrain: planet.terrain,
+          population: planet.population,
+          climate: planet.climate,
+          residents: residentNames
         }
-      })
+      }
+    })
 
-      return Promise.all(planetsPromises)
-    }
+    return Promise.all(planetsPromises)
+  }
 
-    fetchPeople = async () => {
-      const fetchPeople = await fetch('https://swapi.co/api/people/');
-      const peopleData = await fetchPeople.json();
-      const people = await this.fetchHomeworldSpecies(peopleData.results)
-      this.setState({people, display: 'people'})
-    }
+  fetchPeople = async () => {
+    const fetchPeople = await fetch('https://swapi.co/api/people/');
+    const peopleData = await fetchPeople.json();
+    const people = await this.fetchHomeworldSpecies(peopleData.results)
+    this.setState({people, display: 'people'})
+  }
 
-    fetchPlanets = async () => {
-      const fetchPlanets = await fetch('https://swapi.co/api/planets/')
-      const planetResponse = await fetchPlanets.json()
-      const planets = await this.fetchPlanetsData(planetResponse.results)
-      this.setState({planets})
-    }
-
-    fetchHomeworldSpecies(peopleData) {
-      const unresolvedPromises = peopleData.map( async (person) => {
-        let homeworldFetch = await fetch(person.homeworld)
-        let homeworldData = await homeworldFetch.json();
-        let speciesFetch = await fetch(person.species);
-        let speciesData = await speciesFetch.json();
-        return {
-          name: person.name,
-          data: {
-            homeworld: homeworldData.name,
-            species: speciesData.classification,
-            language: speciesData.language,
-            population: homeworldData.population
-          }
+  fetchHomeworldSpecies(peopleData) {
+    const unresolvedPromises = peopleData.map( async (person) => {
+      let homeworldFetch = await fetch(person.homeworld)
+      let homeworldData = await homeworldFetch.json();
+      let speciesFetch = await fetch(person.species);
+      let speciesData = await speciesFetch.json();
+      return {
+        name: person.name,
+        data: {
+          homeworld: homeworldData.name,
+          species: speciesData.classification,
+          language: speciesData.language,
+          population: homeworldData.population
         }
-      })
-      return Promise.all(unresolvedPromises)
+      }
+    })
+    return Promise.all(unresolvedPromises)
+  }
+
+  fetchPlanets = async () => {
+    const fetchPlanets = await fetch('https://swapi.co/api/planets/')
+    const planetResponse = await fetchPlanets.json()
+    const planets = await this.fetchPlanetsData(planetResponse.results)
+
+    this.setState({planets})
+  }
+
+  fetchVehicles = () => {
+    
+  }
     
   addFavorite() {
     
@@ -100,17 +106,21 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">SwapiBox</h1>
           <Button
-            buttonText={'People'} 
-            functionToFire={this.fetchPeople}/>
+            buttonText={'People'}  
+            functionToFire={this.fetchPeople} 
+            />
           <Button 
             buttonText={'Planets'}
-            functionToFire={this.fetchPlanets}/>
+            functionToFire={this.fetchPlanets} 
+            />
           <Button
             buttonText={'Vehicles'}
-            functionToFire={this.fetchVehicles}/>
+            functionToFire={this.fetchVehicles} 
+            />
           <Button
             buttonText={'Favorites'}
-            functionToFire={this.showFavorites}
+            functionToFire={this.showFavorites} 
+            />
         </header>
         <div className='api-data'>
         <ScrollText 
