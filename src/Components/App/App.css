@@ -13,5 +13,9 @@
 .App-intro {
   font-size: large; }
 
-.Scroll-text {
+.api-data {
+  display: flex;
+}
+
+.scroll-text {
   position: left; }

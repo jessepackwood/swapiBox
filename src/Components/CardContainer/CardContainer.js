@@ -2,10 +2,9 @@ import React from 'react'
 import Card from '../Card/Card'
 import './CardContainer.css'
 
-const CardContainer = ({people, planets, vehicles, show}) => {
+const CardContainer = ({people, planets, vehicles, display, addFavorite}) => {
 
   const peopleCards = people.map((person) => {
-    console.log(person)
     return {
       title: person.name,
       data: [
@@ -29,22 +28,45 @@ const CardContainer = ({people, planets, vehicles, show}) => {
     }
   })
 
+  const vehicles = vehicles.map((vehicle)=> {
+    return {
+      title: vehicle.name,
+      data: [
+        ``
+      ]
+    }
+  })
+
   return (
     <div className='card-container'>
-    { show === 'people' && peopleCards.map(card => 
+    { display === '' && 
+      <div> Choose a category
+      </div>
+    }
+    { display === 'people' && peopleCards.map(card => 
       <Card 
         title={card.title}
         data={card.data}
+        addFavorite={addFavorite}
       />
       )
     }
-    { show === 'people' && planetCards.map(card =>
+    { display === 'planets' && planetCards.map(card =>
       <Card
         title={card.title}
         data={card.data}
+        addFavorite={addFavorite}
       />
       )
     }
+    { display === 'vehicles' && peopleCards.map(card => 
+      <Card 
+        title={card.title}
+        data={card.data}
+        addFavorite={addFavorite}
+      />
+      )
+    }    
 
     </div>
     )

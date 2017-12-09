@@ -3,11 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-15": "^1.0.5",
+    "enzyme-adapter-react-16": "^1.1.0",
     "node-sass-chokidar": "0.0.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
     "react-scripts": "1.0.17",
-    "react-star-wars-crawl": "^1.0.1"
+    "react-star-wars-crawl": "^1.0.1",
+    "react-test-renderer": "^16.2.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
