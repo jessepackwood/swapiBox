@@ -56,8 +56,6 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
         <Card
           key={`planets ${index}`}
           object={card}
-          title={card.title}
-          data={card.data}
           toggleFavorite={toggleFavorite}
         />
       )
@@ -66,8 +64,6 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
         <Card
           key={card.title}
           object={card}
-          title={card.title}
-          data={card.data}
           toggleFavorite={toggleFavorite}
         />
         )
@@ -76,8 +72,6 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
         <Card
           key={card.title}
           object={card}
-          title={card.title}
-          data={card.data}
           toggleFavorite={toggleFavorite}
         />
         )
