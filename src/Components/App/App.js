@@ -66,7 +66,7 @@ class App extends Component {
     this.setState({planets, display: 'planets'})
   }
 
-  fetchPlanetsData(planets) {
+  fetchPlanetsData = (planets) => {
     const planetsPromises = planets.map( async (planet) => {
       const residentsPromises = planet.residents.map( async (resident) => { 
         const residentData = await fetch(resident);
@@ -91,11 +91,19 @@ class App extends Component {
 
   fetchVehicles = async () => {
     const fetchvehicles = await fetch('https://swapi.co/api/vehicles/')
-    const vehicle = await fetchvehicles.json()
-    debugger
-    return {
-      name: vehicle.name
-    }
+    const vehicleObj = await fetchvehicles.json()
+    const vehicles = vehicleObj.results.map( vehicle => {
+      return {
+        name: vehicle.name,
+        data: {
+          model: vehicle.model,
+          class: vehicle.vehicle_class,
+          passengers: vehicle.passengers
+        }
+      }
+    })
+    this.setState({vehicles, display: 'vehicles'})
+    return vehicles
   }
     
   addFavorite() {

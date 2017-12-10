@@ -33,7 +33,9 @@ const CardContainer = ({people, planets, vehicles, display, addFavorite}) => {
     return {
       title: vehicle.name,
       data: [
-        ``
+        `Model: ${vehicle.data.model}`,
+        `Class: ${vehicle.data.class}`,
+        `Passengers: ${vehicle.data.passengers}`
       ]
     }
   })
