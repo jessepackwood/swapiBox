@@ -105,8 +105,7 @@ class App extends Component {
     
   toggleFavorite = (cardObject) => {
     let favorites = this.state.favorites;
-    // debugger
-    
+
     const currentFavorites = favorites.find(favorite => favorite.title === cardObject.title)
     if(!currentFavorites) {
       favorites.push(cardObject)
