@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ScrollText from '../ScrollText/ScrollText'
 import CardContainer from '../CardContainer/CardContainer'
+import Header from '../Header/Header'
 import './App.css';
 
 class App extends Component {
@@ -11,7 +12,8 @@ class App extends Component {
       planets: [],
       vehicles: [],
       filmText: [],
-      show: 'people'
+      favorites: [],
+      display: ''
     }
   }
 
@@ -20,90 +22,117 @@ class App extends Component {
     const filmData = await fetchFilm.json();
     const filmText = this.fetchFilmText(filmData.results)
     this.setState({filmText})
+    }
 
+
+  fetchFilmText(filmData) {
+    return filmData.map( (film) => {
+      return film.opening_crawl
+    })
+  }
+
+  fetchPeople = async () => {
     const fetchPeople = await fetch('https://swapi.co/api/people/');
     const peopleData = await fetchPeople.json();
-    console.log(peopleData)
     const people = await this.fetchHomeworldSpecies(peopleData.results)
-    this.setState({people})
+    this.setState({people, display: 'people'})
+  }
 
+  fetchHomeworldSpecies(peopleData) {
+    const unresolvedPromises = peopleData.map( async (person) => {
+      let homeworldFetch = await fetch(person.homeworld)
+      let homeworldData = await homeworldFetch.json();
+      let speciesFetch = await fetch(person.species);
+      let speciesData = await speciesFetch.json();
+      return {
+        name: person.name,
+        data: {
+          homeworld: homeworldData.name,
+          species: speciesData.classification,
+          language: speciesData.language,
+          population: homeworldData.population
+        }
+      }
+    })
+    return Promise.all(unresolvedPromises)
+  }
+
+  fetchPlanets = async () => {
     const fetchPlanets = await fetch('https://swapi.co/api/planets/')
     const planetResponse = await fetchPlanets.json()
     const planets = await this.fetchPlanetsData(planetResponse.results)
-    this.setState({planets})
-    }
 
+    this.setState({planets, display: 'planets'})
+  }
 
-    fetchFilmText(filmData) {
-      return filmData.map( (film) => {
-        return film.opening_crawl
-      })
-    }
+  fetchPlanetsData = (planets) => {
+    const planetsPromises = planets.map( async (planet) => {
+      const residentsPromises = planet.residents.map( async (resident) => { 
+        const residentData = await fetch(resident);
+        const residentObject = await residentData.json();
+        return residentObject.name
+      });
+      const residentNames = await Promise.all(residentsPromises);
 
-    fetchPlanetsData(planets) {
-      const planetsPromises = planets.map( async (planet) => {
-        const residentsPromises = planet.residents.map( async (resident) => { 
-          const residentData = await fetch(resident);
-          const residentObject = await residentData.json();
-          return residentObject.name
-        });
-        const residentNames = await Promise.all(residentsPromises);
-
-        return {
-          name: planet.name,
-          data: {
-            terrain: planet.terrain,
-            population: planet.population,
-            climate: planet.climate,
-            residents: residentNames
-          }
+      return {
+        name: planet.name,
+        data: {
+          terrain: planet.terrain,
+          population: planet.population,
+          climate: planet.climate,
+          residents: residentNames
         }
-      })
+      }
+    })
 
-      return Promise.all(planetsPromises)
-    }
+    return Promise.all(planetsPromises)
+  }
 
-    fetchHomeworldSpecies(peopleData) {
-      console.log(peopleData)
-      const unresolvedPromises = peopleData.map( async (person) => {
-        let homeworldFetch = await fetch(person.homeworld)
-        let homeworldData = await homeworldFetch.json();
-        let speciesFetch = await fetch(person.species);
-        let speciesData = await speciesFetch.json();
-        // debugger
-        return {
-          name: person.name,
-          data: {
-            homeworld: homeworldData.name,
-            species: speciesData.classification,
-            language: speciesData.language,
-            population: homeworldData.population
-          }
+  fetchVehicles = async () => {
+    const fetchvehicles = await fetch('https://swapi.co/api/vehicles/')
+    const vehicleObj = await fetchvehicles.json()
+    const vehicles = vehicleObj.results.map( vehicle => {
+      return {
+        name: vehicle.name,
+        data: {
+          model: vehicle.model,
+          class: vehicle.vehicle_class,
+          passengers: vehicle.passengers
         }
-      })
-      console.log(unresolvedPromises)
-      return Promise.all(unresolvedPromises)
-    }
+      }
+    })
+    this.setState({vehicles, display: 'vehicles'})
+    return vehicles
+  }
+    
+  addFavorite() {
+    
+  }
+
+  showFavorites() {
+    console.log(this.state.favorites)
+  }
 
   render() {
     return (
       <div className="App">
-        <div>
-        <header className="App-header">
-          <h1 className="App-title">SwapiBox</h1>
-          <button>People</button>
-          <button>Planets</button>
-          <button>Vehicles</button>
-        </header>
-        <ScrollText 
-          className='Scroll-text'
-          filmText={this.state.filmText.length > 0 && this.state.filmText[0]}/>
-        <CardContainer 
-          people={this.state.people}
-          planets={this.state.planets}
-          vehicles={this.state.vehicles} 
-          show={this.state.show}
+        <Header
+          buttonText=''
+          fetchPeople={this.fetchPeople}
+          fetchPlanets={this.fetchPlanets}
+          fetchVehicles={this.fetchVehicles}
         />
+        <div className='api-data'>
+          <ScrollText 
+            className='scroll-text'
+            filmText={this.state.filmText.length > 0 && this.state.filmText[0]}/>
+          <CardContainer 
+            people={this.state.people}
+            planets={this.state.planets}
+            vehicles={this.state.vehicles} 
+            display={this.state.display}
+            // addFavorite={this.addFavorite}
+          />
         </div>
       </div>
     );

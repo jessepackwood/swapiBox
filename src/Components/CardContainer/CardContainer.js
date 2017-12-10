@@ -1,11 +1,11 @@
 import React from 'react'
 import Card from '../Card/Card'
+import PropTypes from 'prop-types'
 import './CardContainer.css'
 
-const CardContainer = ({people, planets, vehicles, show}) => {
+const CardContainer = ({people, planets, vehicles, display, addFavorite}) => {
 
   const peopleCards = people.map((person) => {
-    console.log(person)
     return {
       title: person.name,
       data: [
@@ -29,29 +29,60 @@ const CardContainer = ({people, planets, vehicles, show}) => {
     }
   })
 
+  const vehicleCards = vehicles.map((vehicle)=> {
+    return {
+      title: vehicle.name,
+      data: [
+        `Model: ${vehicle.data.model}`,
+        `Class: ${vehicle.data.class}`,
+        `Passengers: ${vehicle.data.passengers}`
+      ]
+    }
+  })
+
   return (
     <div className='card-container'>
-    { show === 'people' && peopleCards.map(card => 
-      <Card 
-        title={card.title}
-        data={card.data}
-      />
-      )
+    { display === '' && 
+      <div> Choose a category
+      </div>
     }
-    { show === 'people' && planetCards.map(card =>
+    { display === 'people' && peopleCards.map( (card, index) => 
       <Card
+        key={`people ${index}`}
         title={card.title}
         data={card.data}
+        addFavorite={addFavorite}
       />
       )
     }
-
+    { display === 'planets' && planetCards.map( (card, index) =>
+      <Card
+        key={`planets ${index}`}
+        title={card.title}
+        data={card.data}
+        addFavorite={addFavorite}
+      />
+      )
+    }
+    { display === 'vehicles' && vehicleCards.map( (card, index) => 
+      <Card
+        key={card.title}
+        title={card.title}
+        data={card.data}
+        addFavorite={addFavorite}
+      />
+      )
+    }    
     </div>
     )
 }
 
 CardContainer.propTypes = {
-
+  people: PropTypes.array,
+  planets: PropTypes.array,
+  vehicles: PropTypes.array,
+  display: PropTypes.string,
+  addFavorite: PropTypes.func
 }
 
 export default CardContainer
