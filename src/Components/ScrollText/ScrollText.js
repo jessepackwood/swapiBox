@@ -1,4 +1,5 @@
 import React from 'react';
+import './ScrollText.css'
 import PropTypes from 'prop-types';
 
 const ScrollText = ({film}) => {
@@ -13,7 +14,7 @@ const ScrollText = ({film}) => {
   };
 
   return (
-    <div className="scrolling-area">
+    <div className="scroll-container">
       <div className="scroll-text">
         <h3>{film.title}</h3>
         <h5>EPISODE {romanNumerial[film.episode]}</h5>

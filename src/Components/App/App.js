@@ -19,9 +19,7 @@ class App extends Component {
 
   async componentDidMount() {
     const film = await this.fetchFilm()
-
     this.setState({film})
-    console.log(this.state.film)
   }
 
   fetchFilm = async () => {
@@ -105,33 +103,45 @@ class App extends Component {
     return vehicles
   }
     
-  addFavorite() {
+  toggleFavorite = (cardObject) => {
+    let favorites = this.state.favorites;
+    // debugger
     
+    const currentFavorites = favorites.find(favorite => favorite.title === cardObject.title)
+    if(!currentFavorites) {
+      favorites.push(cardObject)
+    } else {
+      favorites = favorites.filter(favorite => favorite.title !== cardObject.title)
+    }
+    this.setState({favorites})
   }
 
-  showFavorites() {
-    console.log(this.state.favorites)
+  showFavorites = () => {
+    this.setState({display: 'favorites'})
   }
 
   render() {
     return (
       <div className="App">
-        <Header
-          buttonText=''
-          fetchPeople={this.fetchPeople}
-          fetchPlanets={this.fetchPlanets}
-          fetchVehicles={this.fetchVehicles}
-        />
-        <div className='api-data'>
           <ScrollText 
             className='scroll-text'
-            film={this.state.film}/>
+            film={this.state.film}
+            />
+        <div className='api-data'>
+          <Header
+            buttonText=''
+            fetchPeople={this.fetchPeople}
+            fetchPlanets={this.fetchPlanets}
+            fetchVehicles={this.fetchVehicles}
+            showFavorites={this.showFavorites}
+          />
           <CardContainer 
             people={this.state.people}
             planets={this.state.planets}
             vehicles={this.state.vehicles} 
             display={this.state.display}
-            // addFavorite={this.addFavorite}
+            toggleFavorite={this.toggleFavorite}
+            favorites={this.state.favorites}
           />
         </div>
       </div>
