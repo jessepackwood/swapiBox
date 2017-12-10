@@ -1,10 +1,12 @@
 import React from 'react'
 import Button from '../Button/Button'
+import './Header.css'
 
 const Header = ({buttonText, fetchPeople, fetchPlanets, fetchVehicles, showFavorites}) => {
   return(
        <div className="App-header">
           <h1 className="App-title">SwapiBox</h1>
+          <div className='buttons'>
           <Button
             buttonText={'People'}  
             functionToFire={fetchPeople} 
@@ -21,6 +23,7 @@ const Header = ({buttonText, fetchPeople, fetchPlanets, fetchVehicles, showFavor
             buttonText={'Favorites'}
             functionToFire={showFavorites}
           />
+          </div>
       </div>
       )
     }

@@ -11,24 +11,22 @@ class App extends Component {
       people: [],
       planets: [],
       vehicles: [],
-      filmText: [],
+      film: {},
       favorites: [],
       display: ''
     }
   }
 
   async componentDidMount() {
-    const fetchFilm = await fetch('https://swapi.co/api/films/')
-    const filmData = await fetchFilm.json();
-    const filmText = this.fetchFilmText(filmData.results)
-    this.setState({filmText})
-    }
+    const film = await this.fetchFilm()
+    this.setState({film})
+  }
 
-
-  fetchFilmText(filmData) {
-    return filmData.map( (film) => {
-      return film.opening_crawl
-    })
+  fetchFilm = async () => {
+    const randomFilm = Math.floor(Math.random() * (7) + 1);
+    const filmCrawl = await fetch(`https://swapi.co/api/films/${randomFilm}/`);
+    const filmData = await filmCrawl.json();
+    return Object.assign({}, {title: filmData.title}, {episode: filmData.episode_id}, {text: filmData.opening_crawl})
   }
 
   fetchPeople = async () => {
@@ -105,33 +103,45 @@ class App extends Component {
     return vehicles
   }
     
-  addFavorite() {
+  toggleFavorite = (cardObject) => {
+    let favorites = this.state.favorites;
+    // debugger
     
+    const currentFavorites = favorites.find(favorite => favorite.title === cardObject.title)
+    if(!currentFavorites) {
+      favorites.push(cardObject)
+    } else {
+      favorites = favorites.filter(favorite => favorite.title !== cardObject.title)
+    }
+    this.setState({favorites})
   }
 
-  showFavorites() {
-    console.log(this.state.favorites)
+  showFavorites = () => {
+    this.setState({display: 'favorites'})
   }
 
   render() {
     return (
       <div className="App">
-        <Header
-          buttonText=''
-          fetchPeople={this.fetchPeople}
-          fetchPlanets={this.fetchPlanets}
-          fetchVehicles={this.fetchVehicles}
-        />
-        <div className='api-data'>
           <ScrollText 
             className='scroll-text'
-            filmText={this.state.filmText.length > 0 && this.state.filmText[0]}/>
+            film={this.state.film}
+            />
+        <div className='api-data'>
+          <Header
+            buttonText=''
+            fetchPeople={this.fetchPeople}
+            fetchPlanets={this.fetchPlanets}
+            fetchVehicles={this.fetchVehicles}
+            showFavorites={this.showFavorites}
+          />
           <CardContainer 
             people={this.state.people}
             planets={this.state.planets}
             vehicles={this.state.vehicles} 
             display={this.state.display}
-            // addFavorite={this.addFavorite}
+            toggleFavorite={this.toggleFavorite}
+            favorites={this.state.favorites}
           />
         </div>
       </div>

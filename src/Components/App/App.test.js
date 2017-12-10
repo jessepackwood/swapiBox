@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme'
-// import Adapter from '../setUpTest.js'
 import App from './App';
 
 describe('App test', () => {
@@ -16,7 +15,7 @@ it('should load scrollText on mount', async () => {
   window.fetch = mockFetch
   const app = await mount(<App />)
   await app.update()
-  expect(app.state('filmText')).toEqual(['Star Warssss'])
+  expect(app.state('film')).toEqual(['Star Warssss'])
   })
 
   it('should load people when the people button is clicked', () => {

@@ -3,7 +3,7 @@ import Card from '../Card/Card'
 import PropTypes from 'prop-types'
 import './CardContainer.css'
 
-const CardContainer = ({people, planets, vehicles, display, addFavorite}) => {
+const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favorites}) => {
 
   const peopleCards = people.map((person) => {
     return {
@@ -42,37 +42,46 @@ const CardContainer = ({people, planets, vehicles, display, addFavorite}) => {
 
   return (
     <div className='card-container'>
-    { display === '' && 
-      <div> Choose a category
-      </div>
-    }
-    { display === 'people' && peopleCards.map( (card, index) => 
-      <Card
-        key={`people ${index}`}
-        title={card.title}
-        data={card.data}
-        addFavorite={addFavorite}
-      />
+      { display === 'people' && peopleCards.map( (card, index) => 
+        <Card
+          key={`people ${index}`}
+          object={card}
+          title={card.title}
+          data={card.data}
+          toggleFavorite={toggleFavorite}
+        />
+        )
+      }
+      { display === 'planets' && planetCards.map( (card, index) =>
+        <Card
+          key={`planets ${index}`}
+          object={card}
+          title={card.title}
+          data={card.data}
+          toggleFavorite={toggleFavorite}
+        />
       )
-    }
-    { display === 'planets' && planetCards.map( (card, index) =>
-      <Card
-        key={`planets ${index}`}
-        title={card.title}
-        data={card.data}
-        addFavorite={addFavorite}
-      />
-      )
-    }
-    { display === 'vehicles' && vehicleCards.map( (card, index) => 
-      <Card
-        key={card.title}
-        title={card.title}
-        data={card.data}
-        addFavorite={addFavorite}
-      />
-      )
-    }    
+      }
+      { display === 'vehicles' && vehicleCards.map( (card, index) => 
+        <Card
+          key={card.title}
+          object={card}
+          title={card.title}
+          data={card.data}
+          toggleFavorite={toggleFavorite}
+        />
+        )
+      }
+      { display === 'favorites' && favorites.map( (card, index) => 
+        <Card
+          key={card.title}
+          object={card}
+          title={card.title}
+          data={card.data}
+          toggleFavorite={toggleFavorite}
+        />
+        )
+      }
     </div>
     )
 }
@@ -82,7 +91,7 @@ CardContainer.propTypes = {
   planets: PropTypes.array,
   vehicles: PropTypes.array,
   display: PropTypes.string,
-  addFavorite: PropTypes.func
+  toggleFavorite: PropTypes.func
 }
 
 export default CardContainer

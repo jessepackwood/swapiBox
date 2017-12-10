@@ -1,3 +1,37 @@
-.scroll-text {
-  position: middle;
-  width: 450px; }
+.scroll-container {
+  background-size: cover;
+  background-position: center;
+  color: #feda4a;
+  display: flex;
+  font-family: 'Pathway Gothic One', sans-serif;
+  height: 500px;
+  justify-content: center;
+  letter-spacing: 6px;
+  overflow: hidden;
+  perspective: 350px;
+  position: relative;
+  text-align: justify;
+  width: 30%; }
+
+.scroll-container .scroll-text {
+  animation: scroll-text 175s linear;
+  font-size: 40px;
+  position: relative;
+  text-align: center;
+  top: -100px;
+  transform-origin: 0% 0%;
+  width: 80%; }
+
+.scroll-container .scroll-text h3 {
+  margin: 0px; }
+
+.scroll-container .scroll-text h5 {
+  margin: 10px 0px; }
+
+@keyframes scroll-text {
+  0% {
+    top: 500px;
+    transform: rotateX(20deg) translateZ(0); }
+  100% {
+    top: -5000px;
+    transform: rotateX(25deg) translateZ(-2500px); } }

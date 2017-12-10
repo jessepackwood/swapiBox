@@ -1,11 +1,14 @@
 import React from 'react'
 // import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './Button.scss'
+import './Button.css'
 
 const Button = ({functionToFire, buttonText}) => {
   return(
-    <button onClick={functionToFire}>{buttonText}</button>
+    <button 
+      className="nav-buttons"
+      onClick={functionToFire}>{buttonText}
+    </button>
   )
 }
 
