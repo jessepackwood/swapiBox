@@ -66,7 +66,7 @@ const CardContainer = ({people, planets, vehicles, display, addFavorite}) => {
     }
     { display === 'vehicles' && vehicleCards.map( (card, index) => 
       <Card
-        key={`vehicles ${index}`}
+        key={card.title}
         title={card.title}
         data={card.data}
         addFavorite={addFavorite}

@@ -10,7 +10,8 @@ const Button = ({functionToFire, buttonText}) => {
 }
 
 Button.propTypes = {
-  
+  functionToFire: PropTypes.func,
+  buttonText: PropTypes.string
 }
 
 export default Button

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ScrollText from '../ScrollText/ScrollText'
 import CardContainer from '../CardContainer/CardContainer'
 import Header from '../Header/Header'
-import Button from '../Button/Button'
 import './App.css';
 
 class App extends Component {
