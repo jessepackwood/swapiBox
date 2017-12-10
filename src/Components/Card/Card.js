@@ -7,10 +7,10 @@ const Card = ({object, toggleFavorite}) => {
   return (
     <div className='card'>
       <h2>{object.title}</h2>
-      <button onClick={()=> toggleFavorite(object)} >Favorite</button>
-      {object.data.map( (info) => {
+      {object.info.map( (info) => {
         return <h4>{info}</h4>
       })}
+      <button className='favorite' onClick={()=> toggleFavorite(object)} >Favorite</button>
     </div>
     )
 }

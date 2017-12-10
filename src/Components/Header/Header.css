@@ -1,8 +1,11 @@
 .App-header {
-  height: 150px;
+  height: 280px;
   color: #feda4a;
-  font-family: 'starjedi';
-  margin: 100px; }
+  font-family: 'starjedi'; }
+
+.App-title {
+  font-size: 57pt;
+  letter-spacing: 0.5em; }
 
 .buttons {
   display: flex;

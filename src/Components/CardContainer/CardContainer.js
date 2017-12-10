@@ -8,11 +8,11 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
   const peopleCards = people.map((person) => {
     return {
       title: person.name,
-      data: [
-        `homeworld: ${person.data.homeworld}`,
-        `species: ${person.data.species}`,
-        `language: ${person.data.language}`,
-        `population: ${person.data.population}`
+      info: [
+        `homeworld: ${person.info.homeworld}`,
+        `species: ${person.info.species}`,
+        `language: ${person.info.language}`,
+        `population: ${person.info.population}`
         ]
     }
   })
@@ -20,11 +20,11 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
   const planetCards = planets.map((planet)=> {
     return {
       title: planet.name,
-      data: [
-        `Terrain: ${planet.data.terrain}`,
-        `population: ${planet.data.population}`,
-        `Climate: ${planet.data.climate}`,
-        `Residents: ${planet.data.residents}`
+      info: [
+        `Terrain: ${planet.info.terrain}`,
+        `population: ${planet.info.population}`,
+        `Climate: ${planet.info.climate}`,
+        `Residents: ${planet.info.residents}`
       ]
     }
   })
@@ -32,22 +32,27 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
   const vehicleCards = vehicles.map((vehicle)=> {
     return {
       title: vehicle.name,
-      data: [
-        `Model: ${vehicle.data.model}`,
-        `Class: ${vehicle.data.class}`,
-        `Passengers: ${vehicle.data.passengers}`
+      info: [
+        `Model: ${vehicle.info.model}`,
+        `Class: ${vehicle.info.class}`,
+        `Passengers: ${vehicle.info.passengers}`
       ]
     }
   })
 
   return (
     <div className='card-container'>
+      { display === '' &&
+        <div>
+          <h2>Choose A Category</h2>
+        </div>
+      }
       { display === 'people' && peopleCards.map( (card, index) => 
         <Card
           key={`people ${index}`}
           object={card}
           title={card.title}
-          data={card.data}
+          info={card.info}
           toggleFavorite={toggleFavorite}
         />
         )

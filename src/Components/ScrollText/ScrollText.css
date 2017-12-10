@@ -4,18 +4,17 @@
   color: #feda4a;
   display: flex;
   font-family: 'Pathway Gothic One', sans-serif;
-  height: 500px;
+  height: 200px;
   justify-content: center;
   letter-spacing: 6px;
   overflow: hidden;
   perspective: 350px;
   position: relative;
-  text-align: justify;
-  width: 30%; }
+  text-align: justify; }
 
 .scroll-container .scroll-text {
   animation: scroll-text 175s linear;
-  font-size: 40px;
+  font-size: 35px;
   position: relative;
   text-align: center;
   top: -100px;

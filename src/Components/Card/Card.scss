@@ -1,6 +1,12 @@
 .card {
-  border: 1px solid black;
+  border: 2px solid white;
   color: red;
   width: 300px;
-  margin-top: 5px;
+  margin-top: 15px;
+}
+
+.favorite {
+  // background: none;
+  width: 100px;
+  font-family: 'starjedi';
 }

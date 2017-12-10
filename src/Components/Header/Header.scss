@@ -1,14 +1,15 @@
 .App-header {
-  // z-index: 1;
-  height: 150px;
+  height: 280px;
   color: #feda4a;
   font-family: 'starjedi';
-  // background-image: url(https://i.ytimg.com/vi/_kaqhy2iV7c/maxresdefault.jpg);
-  margin: 100px;
+}
+
+.App-title {
+  font-size: 57pt;
+  letter-spacing: 0.5em;
 }
 
 .buttons {
   display: flex;
   justify-content: space-around;
-
 }
