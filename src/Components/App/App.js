@@ -11,24 +11,24 @@ class App extends Component {
       people: [],
       planets: [],
       vehicles: [],
-      filmText: [],
+      film: {},
       favorites: [],
       display: ''
     }
   }
 
   async componentDidMount() {
-    const fetchFilm = await fetch('https://swapi.co/api/films/')
-    const filmData = await fetchFilm.json();
-    const filmText = this.fetchFilmText(filmData.results)
-    this.setState({filmText})
-    }
+    const film = await this.fetchFilm()
 
+    this.setState({film})
+    console.log(this.state.film)
+  }
 
-  fetchFilmText(filmData) {
-    return filmData.map( (film) => {
-      return film.opening_crawl
-    })
+  fetchFilm = async () => {
+    const randomFilm = Math.floor(Math.random() * (7) + 1);
+    const filmCrawl = await fetch(`https://swapi.co/api/films/${randomFilm}/`);
+    const filmData = await filmCrawl.json();
+    return Object.assign({}, {title: filmData.title}, {episode: filmData.episode_id}, {text: filmData.opening_crawl})
   }
 
   fetchPeople = async () => {
@@ -125,7 +125,7 @@ class App extends Component {
         <div className='api-data'>
           <ScrollText 
             className='scroll-text'
-            filmText={this.state.filmText.length > 0 && this.state.filmText[0]}/>
+            film={this.state.film}/>
           <CardContainer 
             people={this.state.people}
             planets={this.state.planets}

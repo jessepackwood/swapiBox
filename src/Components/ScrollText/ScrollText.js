@@ -1,23 +1,30 @@
-import React from 'react'
-import './ScrollText.css'
-import PropTypes from 'prop-types'
-import Crawl from 'react-star-wars-crawl'
+import React from 'react';
+import PropTypes from 'prop-types';
 
+const ScrollText = ({film}) => {
+  const romanNumerial = {  
+    1: 'I',
+    2: 'II',
+    3: 'III',
+    4: 'IV',
+    5: 'V',
+    6: 'VI',
+    7: 'VII'
+  };
 
-const ScrollText = ({filmText}) => {
   return (
-    <div className='scroll-text'>
-    <Crawl
-      title="Episode IV"
-      subTitle="A New Hope"
-      text={filmText}
-    />
+    <div className="scrolling-area">
+      <div className="scroll-text">
+        <h3>{film.title}</h3>
+        <h5>EPISODE {romanNumerial[film.episode]}</h5>
+        <h4>{film.text}</h4>
+      </div>
     </div>
   )
-}
+};
+
+export default ScrollText;
 
 ScrollText.propTypes = {
-  filmText: PropTypes.bool
-}
-
-export default ScrollText
+  film: PropTypes.object
+};
