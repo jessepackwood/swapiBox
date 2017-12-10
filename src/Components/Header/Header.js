@@ -3,7 +3,7 @@ import Button from '../Button/Button'
 import PropTypes from 'prop-types'
 import './Header.css'
 
-const Header = ({buttonText, setPeople, setPlanets, fetchVehicles, showFavorites}) => {
+const Header = ({buttonText, setPeople, setPlanets, setVehicles, showFavorites}) => {
   return (
     <div className="App-header">
       <h1 className="App-title">SwapiBox</h1>
@@ -18,7 +18,7 @@ const Header = ({buttonText, setPeople, setPlanets, fetchVehicles, showFavorites
         />
         <Button
           buttonText={'Vehicles'}
-          functionToFire={fetchVehicles} 
+          functionToFire={setVehicles} 
         />
         <Button
           buttonText={'Favorites'}
@@ -33,7 +33,7 @@ Header.propTypes = {
   buttonText: PropTypes.string,
   setPeople: PropTypes.func,
   setPlanets: PropTypes.func,
-  fetchVehicles: PropTypes.func,
+  setVehicles: PropTypes.func,
   showFavorites: PropTypes.func
 }
 

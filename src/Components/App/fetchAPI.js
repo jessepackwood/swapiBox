@@ -79,7 +79,6 @@ export const fetchVehicles = async () => {
         }
       }
     })
-    this.setState({vehicles, display: 'vehicles'})
     return vehicles
   }
 
