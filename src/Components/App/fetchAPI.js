@@ -9,9 +9,8 @@ export const fetchFilm = async () => {
       {episode: filmData.episode_id},
       {text: filmData.opening_crawl}
     );
-  }
-    catch (type) {
-      return Error('Fetch failed');
+  } catch (type) {
+    return Error('Fetch failed');
   }
 };
 
@@ -21,8 +20,7 @@ export const fetchPeople = async () => {
     const peopleData = await fetchPeople.json();
     const people = await fetchHomeworldSpecies(peopleData.results);
     return people;
-    }
-    catch (type) {
+  } catch (type) {
     return Error('Fetch failed');
   }
 };
@@ -45,9 +43,8 @@ export const fetchHomeworldSpecies = (peopleData) => {
       };
     });
     return Promise.all(unresolvedPromises);
-  }
-    catch (type) {
-      return Error('Fetch failed');
+  } catch (type) {
+    return Error('Fetch failed');
   }
 };
 
@@ -57,9 +54,8 @@ export const fetchPlanets = async () => {
     const planetResponse = await fetchPlanets.json();
     const planets = await fetchPlanetsData(planetResponse.results);
     return planets;
-  }
-    catch (type) {
-      return Error('Fetch failed');
+  } catch (type) {
+    return Error('Fetch failed');
   }
 };
 
@@ -86,9 +82,8 @@ export const fetchPlanetsData = (planets) => {
     });
 
     return Promise.all(planetsPromises);
-  };
-    catch (type) {
-      return Error('Fetch failed');
+  } catch (type) {
+    return Error('Fetch failed');
   }
 };
 
@@ -107,8 +102,7 @@ export const fetchVehicles = async () => {
       };
     });
     return vehicles;
-  };
-    catch (type) {
-      return Error('Fetch failed');
+  } catch (type) {
+    return Error('Fetch failed');
   }
 };
