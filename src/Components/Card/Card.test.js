@@ -1,14 +1,31 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import Card from './Card.js'
 
 describe('Card tests', () => {
+  let mockCard;
+  let renderedCard;
+
   beforeEach(() => {
-    const card = shallow(<Card />)
+    mockCard = {
+      title: 'Luke Skywalker',
+      info: [
+        Homeworld: 'Tatooine',
+        Species: 'Human',
+        Language: 'Intergalactic Basic',
+        Population: '20000000'
+      ]
+    };
+    renderedCard = mount(<Card object={mockCard}
+                                     title='Luke Skywalker'
+                                     info={mockCard.info}
+                                     isFavorite={false} 
+                                     />);;
   });
+
   it('should exist', () => {
-    expect(card).toBeDefined()
+    expect(renderedCard).toBeDefined()
   });
 
   it('should render people when people are active', () => {

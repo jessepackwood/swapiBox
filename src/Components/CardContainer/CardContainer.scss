@@ -1,9 +1,6 @@
 .card-container {
-  border: 3px solid gold;
   background-color: rgba(0, 0, 0, 0.6);
-  margin: 60px;
   min-height: 400px;
-  display: flex;
   flex-direction: column;
   justify-content: center;
 }
@@ -11,9 +8,9 @@
 .category {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 30px;
-  background-color: rgba(0, 0, 0, 0.6)
+  margin: 30px auto;
+  width: 1292px;
+  background-color: rgba(0, 0, 0, 0.3)
 }
 
 .category-title {
@@ -21,6 +18,8 @@
 }
 
 .card-container h2 {
+  font-family: 'starjedi';
+  letter-spacing: 0.2em;
   color: #feda4a;
   margin-bottom: 0px;
 }
@@ -29,4 +28,22 @@
   font-size: 20px;
   color: rgb(118, 201, 120);
   text-shadow: 0 0 1px #74F3A6;
+}
+
+@media screen and (max-width: 1291px) {
+  .category {
+    width: 969px;
+  }
+}
+
+@media screen and (max-width: 968px) {
+  .category {
+    width: 646px;
+  }
+}
+
+@media screen and (max-width: 645px) {
+  .category {
+    width: 323px;
+  }
 }

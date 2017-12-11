@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -5,7 +9,7 @@
   align-items: center;
   background-image: url(https://i.ytimg.com/vi/voWpbz1De_M/maxresdefault.jpg);
   margin: 0;
-  padding: 0;
+  padding: 30px;
   width: 100%;
   min-height: 100vh;
   font-family: 'Helvetica';

@@ -1,14 +1,19 @@
 import React from 'react';
-import './ScrollText.css'
-import Button from '../Button/Button'
+import './ScrollText.css';
+import Button from '../Button/Button';
 import PropTypes from 'prop-types';
 
 class ScrollText extends React.Component {
 
-  componentDidMount() {
-    const elements = document.getElementsByClassName('scroll-text')
-    elements[0].addEventListener('animationend', this.props.onSkip )
-  }
+  // componentDidMount() {
+  //   const elements = document.getElementsByClassName('scroll-text');
+  //   elements[0].addEventListener('animationend', this.props.onSkip );
+  // }
+
+  // componentWillUnmount() {
+  //   const elements = document.getElementsByClassName('scroll-text');
+  //   elements[0].addEventListener('animationend', this.props.onSkip );
+  // }
 
   render() {
     const {film, onSkip} = this.props;
@@ -31,18 +36,19 @@ class ScrollText extends React.Component {
             <h4>{film.text}</h4>
           </div>
         </div>
-          <Button
-            className='btn-skip'
-            buttonText='Skip' 
-            functionToFire={onSkip}
-            />
+        <Button
+          className='btn-skip'
+          buttonText='Skip' 
+          functionToFire={onSkip}
+        />
       </div>
-    )
+    );
   }
-};
+}
 
 export default ScrollText;
 
 ScrollText.propTypes = {
-  film: PropTypes.object
+  film: PropTypes.object,
+  onSkip: PropTypes.func
 };

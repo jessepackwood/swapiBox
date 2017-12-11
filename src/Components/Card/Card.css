@@ -1,7 +1,7 @@
 .card {
   border: 2px solid white;
-  width: 300px;
-  margin-bottom: 30px;
+  width: 283px;
+  margin: 0 20px 30px;
   padding: 10px; }
   .card.favorite {
     box-shadow: 0px 0px 15px 15px rgba(67, 143, 238, 0.3); }
@@ -11,10 +11,10 @@
   color: white; }
 
 .favorite-btn {
+  font-weight: bold;
   font-size: 16pt;
   height: 35px;
   width: 150px;
-  font-family: 'starjedi';
   border: none; }
   .favorite-btn:hover {
     background-color: #438fee;

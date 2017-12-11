@@ -1,12 +1,13 @@
 .nav-buttons {
   background: none;
+  background-color: rgba(0, 0, 0, 0.6);
   border: none;
   color: white;
-  font-size: 24pt;
+  font-size: 26pt;
   font-weight: bold;
   outline: #6be395;
   height: 50px;
-  width: 175px;
+  width: 200px;
   transition: all 0.2s ease-in-out; }
   .nav-buttons:hover {
     background-color: #6be395;

@@ -1,13 +1,12 @@
-import React from 'react'
-import Button from '../Button/Button'
-import PropTypes from 'prop-types'
-import {fetchPeople, fetchVehicles, fetchPlanets} from '../App/fetchAPI'
-import './Header.css'
+import React from 'react';
+import Button from '../Button/Button';
+import PropTypes from 'prop-types';
+import {fetchPeople, fetchVehicles, fetchPlanets} from '../App/fetchAPI';
+import './Header.css';
 
-const Header = ({buttonText, setDisplay, showFavorites, favoriteCount}) => {
+const Header = ({ setDisplay, showFavorites, favoriteCount }) => {
   return (
     <div className="App-header">
-      
       <div className='buttons'>
         <Button
           buttonText={'People'}  
@@ -28,15 +27,13 @@ const Header = ({buttonText, setDisplay, showFavorites, favoriteCount}) => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
 Header.propTypes = {
-  buttonText: PropTypes.string,
-  setPeople: PropTypes.func,
-  setPlanets: PropTypes.func,
-  setVehicles: PropTypes.func,
-  showFavorites: PropTypes.func
-}
+  setDisplay: PropTypes.func,
+  showFavorites: PropTypes.func,
+  favoriteCount: PropTypes.number
+};
 
-export default Header
+export default Header;
