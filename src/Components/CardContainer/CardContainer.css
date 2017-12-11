@@ -18,6 +18,8 @@
   font-size: 32pt; }
 
 .card-container h2 {
+  font-family: 'starjedi';
+  letter-spacing: 0.2em;
   color: #feda4a;
   margin-bottom: 0px; }
 

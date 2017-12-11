@@ -11,10 +11,10 @@
   color: white; }
 
 .favorite-btn {
+  font-weight: bold;
   font-size: 16pt;
   height: 35px;
   width: 150px;
-  font-family: 'starjedi';
   border: none; }
   .favorite-btn:hover {
     background-color: #438fee;

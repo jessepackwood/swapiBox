@@ -49,10 +49,8 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
           <h2 className='category-title'>Choose A Category</h2>
         </div>
       }
-      {display && 
-        <h2 className='category-title'>
-          {`${display.charAt(0).toUpperCase()}${display.slice(1)}`}
-        </h2> 
+      { display && 
+        <h2 className='category-title'>{display}</h2> 
       }
       <div className='category'>
       { display === 'people' && peopleCards.map( (card, index) => 
