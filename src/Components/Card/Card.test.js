@@ -4,9 +4,9 @@ import { shallow } from 'enzyme'
 import Card from './Card.js'
 
 describe('Card tests', () => {
-  beforeEach() => {
+  beforeEach(() => {
     const card = shallow(<Card />)
-  }
+  });
   it('should exist', () => {
     expect(card).toBeDefined()
   });

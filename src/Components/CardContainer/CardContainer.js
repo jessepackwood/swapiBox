@@ -5,14 +5,16 @@ import './CardContainer.css'
 
 const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favorites}) => {
 
+  const toggleFavKey = (card) => favorites.map((f) => f.title).includes(card.title)
+
   const peopleCards = people.map((person) => {
     return {
       title: person.name,
-      data: [
-        `homeworld: ${person.data.homeworld}`,
-        `species: ${person.data.species}`,
-        `language: ${person.data.language}`,
-        `population: ${person.data.population}`
+      info: [
+        `Homeworld: ${person.info.homeworld}`,
+        `Species: ${person.info.species}`,
+        `Language: ${person.info.language}`,
+        `Population: ${person.info.population}`
         ]
     }
   })
@@ -20,11 +22,11 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
   const planetCards = planets.map((planet)=> {
     return {
       title: planet.name,
-      data: [
-        `Terrain: ${planet.data.terrain}`,
-        `population: ${planet.data.population}`,
-        `Climate: ${planet.data.climate}`,
-        `Residents: ${planet.data.residents}`
+      info: [
+        `Terrain: ${planet.info.terrain}`,
+        `Population: ${planet.info.population}`,
+        `Climate: ${planet.info.climate}`,
+        `Residents: ${planet.info.residents}`
       ]
     }
   })
@@ -32,50 +34,66 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
   const vehicleCards = vehicles.map((vehicle)=> {
     return {
       title: vehicle.name,
-      data: [
-        `Model: ${vehicle.data.model}`,
-        `Class: ${vehicle.data.class}`,
-        `Passengers: ${vehicle.data.passengers}`
+      info: [
+        `Model: ${vehicle.info.model}`,
+        `Class: ${vehicle.info.class}`,
+        `Passengers: ${vehicle.info.passengers}`
       ]
     }
   })
 
   return (
     <div className='card-container'>
+      { display === '' &&
+        <div>
+          <h2 className='category-title'>Choose A Category</h2>
+        </div>
+      }
+      {display && 
+        <h2 className='category-title'>
+          {`${display.charAt(0).toUpperCase()}${display.slice(1)}`}
+        </h2> 
+      }
+      <div className='category'>
       { display === 'people' && peopleCards.map( (card, index) => 
         <Card
-          key={`people ${index}`}
+          key={`person-${index}`}
           object={card}
           title={card.title}
-          data={card.data}
+          info={card.info}
           toggleFavorite={toggleFavorite}
+          isFavorite={toggleFavKey(card)}
         />
         )
       }
       { display === 'planets' && planetCards.map( (card, index) =>
         <Card
-          key={`planets ${index}`}
+          key={`planet-${index}`}
           object={card}
           toggleFavorite={toggleFavorite}
+          isFavorite={toggleFavKey(card)}
         />
       )
       }
       { display === 'vehicles' && vehicleCards.map( (card, index) => 
         <Card
-          key={card.title}
+          key={`vehicles-${index}`}
           object={card}
           toggleFavorite={toggleFavorite}
+          isFavorite={toggleFavKey(card)}
         />
         )
       }
       { display === 'favorites' && favorites.map( (card, index) => 
         <Card
-          key={card.title}
+          key={`favorites-${index}`}
           object={card}
           toggleFavorite={toggleFavorite}
+          isFavorite={toggleFavKey(card)}
         />
         )
       }
+      </div>
     </div>
     )
 }

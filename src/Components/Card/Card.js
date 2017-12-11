@@ -2,15 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Card.css'
 
-const Card = ({object, toggleFavorite}) => {
-
+const Card = ({object, toggleFavorite, isFavorite}) => {
   return (
-    <div className='card'>
+    <div className={`card ${isFavorite && 'favorite'}`}>
       <h2>{object.title}</h2>
-      <button onClick={()=> toggleFavorite(object)} >Favorite</button>
-      {object.data.map( (info) => {
-        return <h4>{info}</h4>
+      {object.info.map( (info, index) => {
+        return <h4 key={`info-${index}`}>{info}</h4>
       })}
+      <button className='favorite-btn' onClick={()=> toggleFavorite(object)} >Favorite</button>
     </div>
     )
 }
