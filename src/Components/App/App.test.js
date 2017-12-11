@@ -18,8 +18,8 @@ describe('App test', () => {
 
   beforeEach(() => {
     mockCard = {
-      name: 'Luke Skywalker',
-      list: {
+      title: 'Luke Skywalker',
+      info: {
         Homeworld: 'Tatooine',
         Species: 'Human',
         Language: 'Intergalactic Basic',
