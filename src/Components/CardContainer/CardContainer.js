@@ -5,10 +5,11 @@ import './CardContainer.css'
 
 const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favorites}) => {
 
+  const toggleFavKey = (card) => favorites.map((f) => f.title).includes(card.title)
+
   const peopleCards = people.map((person) => {
     return {
       title: person.name,
-      id: person.id,
       info: [
         `Homeworld: ${person.info.homeworld}`,
         `Species: ${person.info.species}`,
@@ -45,10 +46,15 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
     <div className='card-container'>
       { display === '' &&
         <div>
-          <h2>Choose A Category</h2>
+          <h2 className='category-title'>Choose A Category</h2>
         </div>
       }
-      {display && <h2>{`${display.charAt(0).toUpperCase()}${display.slice(1)}`}</h2> }
+      {display && 
+        <h2 className='category-title'>
+          {`${display.charAt(0).toUpperCase()}${display.slice(1)}`}
+        </h2> 
+      }
+      <div className='category'>
       { display === 'people' && peopleCards.map( (card, index) => 
         <Card
           key={`person-${index}`}
@@ -56,6 +62,7 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
           title={card.title}
           info={card.info}
           toggleFavorite={toggleFavorite}
+          isFavorite={toggleFavKey(card)}
         />
         )
       }
@@ -64,6 +71,7 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
           key={`planet-${index}`}
           object={card}
           toggleFavorite={toggleFavorite}
+          isFavorite={toggleFavKey(card)}
         />
       )
       }
@@ -72,6 +80,7 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
           key={`vehicles-${index}`}
           object={card}
           toggleFavorite={toggleFavorite}
+          isFavorite={toggleFavKey(card)}
         />
         )
       }
@@ -80,9 +89,11 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
           key={`favorites-${index}`}
           object={card}
           toggleFavorite={toggleFavorite}
+          isFavorite={toggleFavKey(card)}
         />
         )
       }
+      </div>
     </div>
     )
 }

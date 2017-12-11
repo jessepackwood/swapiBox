@@ -1,13 +1,14 @@
 import React from 'react'
-// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Button.css'
 
-const Button = ({functionToFire, buttonText}) => {
-  return(
+const Button = ({functionToFire, buttonText, count}) => {
+  return (
     <button 
       className="nav-buttons"
-      onClick={functionToFire}>{buttonText}
+      onClick={functionToFire}>
+      <span>{buttonText}</span>
+      {!!count && <span className='btn-count'>{count}</span>}
     </button>
   )
 }

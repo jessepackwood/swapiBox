@@ -37,7 +37,6 @@ export const fetchHomeworldSpecies = (peopleData) => {
       return {
         name: person.name,
         info: {
-          id: Date.now(),
           homeworld: homeworldData.name,
           species: speciesData.classification,
           language: speciesData.language,
@@ -72,12 +71,12 @@ export const fetchPlanetsData = (planets) => {
         const residentObject = await residentData.json();
         return residentObject.name
       });
-      const residentNames = await Promise.all(residentsPromises);
+      let residentNames = await Promise.all(residentsPromises);
+      residentNames = residentNames.length ? residentNames : 'None'
 
       return {
         name: planet.name,
         info: {
-          id: Date.now(),
           terrain: planet.terrain,
           population: planet.population,
           climate: planet.climate,
@@ -101,7 +100,6 @@ export const fetchVehicles = async () => {
       return {
         name: vehicle.name,
         info: {
-          id: Date.now(),
           model: vehicle.model,
           class: vehicle.vehicle_class,
           passengers: vehicle.passengers

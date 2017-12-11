@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import {fetchPeople, fetchVehicles, fetchPlanets} from '../App/fetchAPI'
 import './Header.css'
 
-const Header = ({buttonText, setDisplay, showFavorites}) => {
+const Header = ({buttonText, setDisplay, showFavorites, favoriteCount}) => {
   return (
     <div className="App-header">
-      <h1 className="App-title">SwapiBox</h1>
+      
       <div className='buttons'>
         <Button
           buttonText={'People'}  
@@ -24,6 +24,7 @@ const Header = ({buttonText, setDisplay, showFavorites}) => {
         <Button
           buttonText={'Favorites'}
           functionToFire={showFavorites}
+          count={favoriteCount}
         />
       </div>
     </div>

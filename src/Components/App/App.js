@@ -10,6 +10,7 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
+      page: 1,
       people: [],
       planets: [],
       vehicles: [],
@@ -51,21 +52,31 @@ class App extends Component {
     this.setState({display: 'favorites'})
   }
 
+  onSkip = () => {
+    this.setState({page: 2})
+  }
+
   render() {
     return (
       <div className="App">
-        <div className='api-data'>
+        <h1 className="App-title">SwapiBox</h1>
+        <div className='App-container'>
+        {this.state.page === 1 && 
+          <ScrollText 
+            className='scroll-text'
+            film={this.state.film}
+            onSkip={this.onSkip}
+          />}
+        {this.state.page === 2 && 
+        <div>
           <Header
             buttonText=''
             setDisplay={this.setDisplay}
             setPlanets={this.setPlanets}
             setVehicles={this.setVehicles}
             showFavorites={this.showFavorites}
+            favoriteCount={this.state.favorites.length}
           />
-                <ScrollText 
-            className='scroll-text'
-            film={this.state.film}
-            />
           <CardContainer 
             people={this.state.people}
             planets={this.state.planets}
@@ -74,6 +85,8 @@ class App extends Component {
             toggleFavorite={this.toggleFavorite}
             favorites={this.state.favorites}
           />
+        </div>
+        }
         </div>
       </div>
     );

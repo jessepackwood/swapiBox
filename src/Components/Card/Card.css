@@ -1,15 +1,21 @@
 .card {
   border: 2px solid white;
-  color: red;
   width: 300px;
-  margin-top: 15px;
+  margin-bottom: 30px;
   padding: 10px; }
+  .card.favorite {
+    box-shadow: 0px 0px 15px 15px rgba(67, 143, 238, 0.3); }
 
-.favorite {
-  width: 100px;
+.favorite .favorite-btn {
+  background-color: #438fee;
+  color: white; }
+
+.favorite-btn {
+  font-size: 16pt;
+  height: 35px;
+  width: 150px;
   font-family: 'starjedi';
   border: none; }
-
-.favorite:hover {
-  background-color: #438fee;
-  box-shadow: 5px 5px 15px rgba(67, 143, 238, 0.4); }
+  .favorite-btn:hover {
+    background-color: #438fee;
+    box-shadow: 0px 0px 10px 10px rgba(67, 143, 238, 0.3); }
