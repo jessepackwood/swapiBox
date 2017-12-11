@@ -1,24 +1,25 @@
 import React from 'react'
 import Button from '../Button/Button'
 import PropTypes from 'prop-types'
+import {fetchPeople, fetchVehicles, fetchPlanets} from '../App/fetchAPI'
 import './Header.css'
 
-const Header = ({buttonText, setPeople, setPlanets, setVehicles, showFavorites}) => {
+const Header = ({buttonText, setDisplay, showFavorites}) => {
   return (
     <div className="App-header">
       <h1 className="App-title">SwapiBox</h1>
       <div className='buttons'>
         <Button
           buttonText={'People'}  
-          functionToFire={setPeople} 
+          functionToFire={() => setDisplay('people', fetchPeople)} 
         />
         <Button 
           buttonText={'Planets'}
-          functionToFire={setPlanets} 
+          functionToFire={() => setDisplay('planets', fetchPlanets)} 
         />
         <Button
           buttonText={'Vehicles'}
-          functionToFire={setVehicles} 
+          functionToFire={() => setDisplay('vehicles', fetchVehicles)}
         />
         <Button
           buttonText={'Favorites'}

@@ -1,4 +1,11 @@
 .nav-buttons {
+  border: none;
   height: 40px;
   width: 120px;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-buttons:hover {
+  background-color: rgb(107, 227, 149);
+  box-shadow: 5px 5px 15px rgba(107, 227, 149, .4);
 }

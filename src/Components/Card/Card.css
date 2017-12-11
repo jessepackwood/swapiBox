@@ -2,8 +2,14 @@
   border: 2px solid white;
   color: red;
   width: 300px;
-  margin-top: 15px; }
+  margin-top: 15px;
+  padding: 10px; }
 
 .favorite {
   width: 100px;
-  font-family: 'starjedi'; }
+  font-family: 'starjedi';
+  border: none; }
+
+.favorite:hover {
+  background-color: #438fee;
+  box-shadow: 5px 5px 15px rgba(67, 143, 238, 0.4); }

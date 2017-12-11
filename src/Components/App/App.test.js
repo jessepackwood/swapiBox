@@ -15,7 +15,7 @@ describe('App test', () => {
       {opening_crawl: 'Star Warssss',
 
        title: 'Return of the Jedi',
-     }
+      }
     )
     }))
   });

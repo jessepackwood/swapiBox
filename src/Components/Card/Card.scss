@@ -3,10 +3,17 @@
   color: red;
   width: 300px;
   margin-top: 15px;
+  padding: 10px;
 }
 
 .favorite {
   // background: none;
   width: 100px;
   font-family: 'starjedi';
+  border: none;
+}
+
+.favorite:hover {
+  background-color: rgb(67, 143, 238);
+  box-shadow: 5px 5px 15px rgba(67, 143, 238, .4);
 }

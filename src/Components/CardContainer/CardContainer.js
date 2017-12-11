@@ -8,11 +8,12 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
   const peopleCards = people.map((person) => {
     return {
       title: person.name,
+      id: person.id,
       info: [
-        `homeworld: ${person.info.homeworld}`,
-        `species: ${person.info.species}`,
-        `language: ${person.info.language}`,
-        `population: ${person.info.population}`
+        `Homeworld: ${person.info.homeworld}`,
+        `Species: ${person.info.species}`,
+        `Language: ${person.info.language}`,
+        `Population: ${person.info.population}`
         ]
     }
   })
@@ -22,7 +23,7 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
       title: planet.name,
       info: [
         `Terrain: ${planet.info.terrain}`,
-        `population: ${planet.info.population}`,
+        `Population: ${planet.info.population}`,
         `Climate: ${planet.info.climate}`,
         `Residents: ${planet.info.residents}`
       ]
@@ -47,9 +48,10 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
           <h2>Choose A Category</h2>
         </div>
       }
+      {display && <h2>{`${display.charAt(0).toUpperCase()}${display.slice(1)}`}</h2> }
       { display === 'people' && peopleCards.map( (card, index) => 
         <Card
-          key={`people ${index}`}
+          key={`person-${index}`}
           object={card}
           title={card.title}
           info={card.info}
@@ -59,7 +61,7 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
       }
       { display === 'planets' && planetCards.map( (card, index) =>
         <Card
-          key={`planets ${index}`}
+          key={`planet-${index}`}
           object={card}
           toggleFavorite={toggleFavorite}
         />
@@ -67,7 +69,7 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
       }
       { display === 'vehicles' && vehicleCards.map( (card, index) => 
         <Card
-          key={card.title}
+          key={`vehicles-${index}`}
           object={card}
           toggleFavorite={toggleFavorite}
         />
@@ -75,7 +77,7 @@ const CardContainer = ({people, planets, vehicles, display, toggleFavorite, favo
       }
       { display === 'favorites' && favorites.map( (card, index) => 
         <Card
-          key={card.title}
+          key={`favorites-${index}`}
           object={card}
           toggleFavorite={toggleFavorite}
         />
