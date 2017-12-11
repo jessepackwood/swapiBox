@@ -8,7 +8,7 @@ const Button = ({functionToFire, buttonText, count}) => {
       className="nav-buttons"
       onClick={functionToFire}>
       <span>{buttonText}</span>
-      {!!count && <span className='btn-count'>{count}</span>}
+      {!!count && <span className='btn-count'>{`:${count}`}</span>}
     </button>
   )
 }
