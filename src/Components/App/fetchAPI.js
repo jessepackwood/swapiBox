@@ -8,10 +8,10 @@ export const fetchFilm = async () => {
       {title: filmData.title},
       {episode: filmData.episode_id},
       {text: filmData.opening_crawl}
-      )
+    );
   }
-  catch (type) {
-    return Error('Fetch failed');
+    catch (type) {
+      return Error('Fetch failed');
   }
 };
 
@@ -42,24 +42,24 @@ export const fetchHomeworldSpecies = (peopleData) => {
           language: speciesData.language,
           population: homeworldData.population
         }
-      }
-    })
-    return Promise.all(unresolvedPromises)
+      };
+    });
+    return Promise.all(unresolvedPromises);
   }
-  catch (type) {
-    return Error('Fetch failed');
+    catch (type) {
+      return Error('Fetch failed');
   }
 };
 
 export const fetchPlanets = async () => {
   try {
-    const fetchPlanets = await fetch('https://swapi.co/api/planets/')
-    const planetResponse = await fetchPlanets.json()
-    const planets = await fetchPlanetsData(planetResponse.results)
-    return planets
+    const fetchPlanets = await fetch('https://swapi.co/api/planets/');
+    const planetResponse = await fetchPlanets.json();
+    const planets = await fetchPlanetsData(planetResponse.results);
+    return planets;
   }
-  catch (type) {
-    return Error('Fetch failed');
+    catch (type) {
+      return Error('Fetch failed');
   }
 };
 
@@ -69,10 +69,10 @@ export const fetchPlanetsData = (planets) => {
       const residentsPromises = planet.residents.map( async (resident) => { 
         const residentData = await fetch(resident);
         const residentObject = await residentData.json();
-        return residentObject.name
+        return residentObject.name;
       });
       let residentNames = await Promise.all(residentsPromises);
-      residentNames = residentNames.length ? residentNames : 'None'
+      residentNames = residentNames.length ? residentNames : 'None';
 
       return {
         name: planet.name,
@@ -82,20 +82,20 @@ export const fetchPlanetsData = (planets) => {
           climate: planet.climate,
           residents: residentNames
         }
-      }
-    })
+      };
+    });
 
-    return Promise.all(planetsPromises)
-  }
-  catch (type) {
-    return Error('Fetch failed');
+    return Promise.all(planetsPromises);
+  };
+    catch (type) {
+      return Error('Fetch failed');
   }
 };
 
 export const fetchVehicles = async () => {
   try {
-    const fetchvehicles = await fetch('https://swapi.co/api/vehicles/')
-    const vehicleObj = await fetchvehicles.json()
+    const fetchvehicles = await fetch('https://swapi.co/api/vehicles/');
+    const vehicleObj = await fetchvehicles.json();
     const vehicles = vehicleObj.results.map( vehicle => {
       return {
         name: vehicle.name,
@@ -104,11 +104,11 @@ export const fetchVehicles = async () => {
           class: vehicle.vehicle_class,
           passengers: vehicle.passengers
         }
-      }
-    })
-    return vehicles
-  }
-  catch (type) {
-    return Error('Fetch failed');
+      };
+    });
+    return vehicles;
+  };
+    catch (type) {
+      return Error('Fetch failed');
   }
 };

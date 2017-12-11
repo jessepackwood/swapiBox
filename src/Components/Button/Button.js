@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
-import './Button.css'
+import './Button.css';
 
 const Button = ({functionToFire, buttonText, count}) => {
   return (
@@ -10,12 +10,13 @@ const Button = ({functionToFire, buttonText, count}) => {
       <span>{buttonText}</span>
       {!!count && <span className='btn-count'>{`:${count}`}</span>}
     </button>
-  )
-}
+  );
+};
 
 Button.propTypes = {
   functionToFire: PropTypes.func,
-  buttonText: PropTypes.string
-}
+  buttonText: PropTypes.string,
+  count: PropTypes.number
+};
 
-export default Button
+export default Button;
