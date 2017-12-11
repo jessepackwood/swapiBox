@@ -4,11 +4,16 @@ import Button from '../Button/Button';
 import PropTypes from 'prop-types';
 
 class ScrollText extends React.Component {
-  
-  componentDidMount() {
-    const elements = document.getElementsByClassName('scroll-text');
-    elements[0].addEventListener('animationend', this.props.onSkip );
-  }
+
+  // componentDidMount() {
+  //   const elements = document.getElementsByClassName('scroll-text');
+  //   elements[0].addEventListener('animationend', this.props.onSkip );
+  // }
+
+  // componentWillUnmount() {
+  //   const elements = document.getElementsByClassName('scroll-text');
+  //   elements[0].addEventListener('animationend', this.props.onSkip );
+  // }
 
   render() {
     const {film, onSkip} = this.props;
