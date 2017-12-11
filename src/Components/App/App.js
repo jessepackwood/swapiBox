@@ -73,8 +73,6 @@ class App extends Component {
               <Header
                 buttonText=''
                 setDisplay={this.setDisplay}
-                setPlanets={this.setPlanets}
-                setVehicles={this.setVehicles}
                 showFavorites={this.showFavorites}
                 favoriteCount={this.state.favorites.length}
               />

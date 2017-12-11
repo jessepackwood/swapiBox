@@ -1,7 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { shallow, mount } from 'enzyme'
-import Header from './Header.js'
+import React from 'react';
+import { shallow, mount } from 'enzyme';
+import Header from './Header.js';
 
 describe('Header tests', () => {
   let renderedHeader;
@@ -12,7 +11,7 @@ describe('Header tests', () => {
 
   it('should exist', () => {
     expect(renderedHeader).toBeDefined();
-  })
+  });
 
   it('should receive props', () => {
     renderedHeader = mount(<Header favoriteCount={3} />);

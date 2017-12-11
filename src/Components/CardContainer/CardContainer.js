@@ -12,7 +12,7 @@ const CardContainer = (
 
   const peopleCards = people.map((person) => {
     return {
-      title: person.name,
+      title: person.name.toLowerCase(),
       info: [
         `Homeworld: ${person.info.homeworld}`,
         `Species: ${person.info.species}`,
@@ -24,7 +24,7 @@ const CardContainer = (
 
   const planetCards = planets.map((planet)=> {
     return {
-      title: planet.name,
+      title: planet.name.toLowerCase(),
       info: [
         `Terrain: ${planet.info.terrain}`,
         `Population: ${planet.info.population}`,
@@ -36,7 +36,7 @@ const CardContainer = (
 
   const vehicleCards = vehicles.map((vehicle)=> {
     return {
-      title: vehicle.name,
+      title: vehicle.name.toLowerCase(),
       info: [
         `Model: ${vehicle.info.model}`,
         `Class: ${vehicle.info.class}`,
