@@ -1,14 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow, mount } from 'enzyme'
-import {
-  fetchFilm, 
-  fetchPeople, 
-  fetchHomeWorldSpecies, 
-  fetchPlanets, 
-  fetchPlanetsData, 
-  fetchvehicles
-} from './fetchAPI'
+import { shallow } from 'enzyme';
 import App from './App';
 
 
@@ -38,14 +30,14 @@ describe('App test', () => {
   });
 
   it('Should only display scrollText on page load', () => {
-    expect(renderedApp.state().page).toEqual(1)
-    expect(renderedApp.find('.scroll-text').length).toEqual(1)
+    expect(renderedApp.state().page).toEqual(1);
+    expect(renderedApp.find('.scroll-text').length).toEqual(1);
 
-    renderedApp.instance().onSkip()
+    renderedApp.instance().onSkip();
     renderedApp.update();
 
-    expect(renderedApp.state().page).toEqual(2)
-    expect(renderedApp.find('.scroll-text').length).toEqual(0)
+    expect(renderedApp.state().page).toEqual(2);
+    expect(renderedApp.find('.scroll-text').length).toEqual(0);
   })
 
   it.skip('Should change display base on category selected', () => {

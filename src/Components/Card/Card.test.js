@@ -1,7 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { shallow, mount } from 'enzyme'
-import Card from './Card.js'
+import React from 'react';
+import { shallow, mount } from 'enzyme';
+import Card from './Card.js';
 
 describe('Card tests', () => {
   let mockCard;
@@ -21,27 +20,27 @@ describe('Card tests', () => {
                                      title='Luke Skywalker'
                                      info={mockCard.info}
                                      isFavorite={false} 
-                                     />);;
+                                     />);
   });
 
   it('should exist', () => {
-    expect(renderedCard).toBeDefined()
+    expect(renderedCard).toBeDefined();
   });
 
   it('should render people when people are active', () => {
 
-  })
+  });
 
   it('should render planets when planets are active', () => {
 
-  })
+  });
 
   it('should render vehicles when vehicles are active', () => {
 
-  })
+  });
 
   it('should become a favorite when clicked', () => {
     
-  })
+  });
 
-})
+});
